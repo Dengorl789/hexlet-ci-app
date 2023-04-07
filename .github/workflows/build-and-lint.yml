@@ -1,4 +1,4 @@
-name: build-and-lint
+name: build-and-lint with Synk
 on: push
 
 jobs:
@@ -6,13 +6,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Клонируем репозиторий
       - uses: actions/checkout@v3
+      - uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.ce4882c8-1dcd-44aa-99a2-7c00d019032e  }}
+      - uses: actions/setup-node@v3
       - run: npm install
-      # Запускаем линтер
       - run: make lint
-      # Запускаем тесты
-      # у шагов может быть имя, иногда это помогает отладке
-      # имя выводится на Github при просмотре сборки
       - name: run tests
-        run: make test # name и run относятся к одной задаче, поэтому дефис ставится только перед name
+        run: make test
