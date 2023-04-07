@@ -7,9 +7,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: snyk
+      - uses: snyk/actions/node@master
         env:
-          SNYK_TOKEN: ${{ secrets.ce4882c8-1dcd-44aa-99a2-7c00d019032e  }}
+          SNYK_TOKEN: ${{ ce4882c8-1dcd-44aa-99a2-7c00d019032e  }}
       - uses: actions/setup-node@v3
       - run: npm install
       - run: make lint
